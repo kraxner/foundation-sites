@@ -68,8 +68,26 @@
 $global-font-size: 100%;
 $global-width: rem-calc(1200);
 $global-lineheight: 1.5;
+
+// the following CSS variables have to be defined
+// $wp-primary-main: #30638E;
+// :root {
+//   --clr-primary-main: #{$wp-primary-main};
+//   --clr-primary-semidark: #{scale-color($wp-primary-main, $lightness: -14%)};
+//   --clr-primary-main-contrast: #{color-pick-contrast($wp-primary-main , (white, black),0)};
+// }
+
+$primary-color-main: var(--clr-primary-main);
+$primary-color-semidark: var(--clr-primary-semidark); 
+$primary-color-shadow: RGB(var(--clr-primary-main), 0.5); 
+
+$global-color-contrasts: (
+  // keys have to correspond exactly to the color definitions that will be looked up
+  var(--clr-primary-main): var(--clr-primary-main-contrast)
+);
+
 $foundation-palette: (
-  primary: #1779ba,
+  primary: $primary-color-main,
   secondary: #767676,
   success: #3adb76,
   warning: #ffae00,
@@ -171,7 +189,7 @@ $paragraph-margin-bottom: 1rem;
 $paragraph-text-rendering: optimizeLegibility;
 $enable-code-inline: true;
 $anchor-color: $primary-color;
-$anchor-color-hover: scale-color($anchor-color, $lightness: -14%);
+$anchor-color-hover: $primary-color-semidark;//scale-color($anchor-color, $lightness: -14%);
 $anchor-text-decoration: none;
 $anchor-text-decoration-hover: none;
 $hr-width: $global-width;
@@ -298,7 +316,7 @@ $button-padding: 0.85em 1em;
 $button-margin: 0 0 $global-margin 0;
 $button-fill: solid;
 $button-background: $primary-color;
-$button-background-hover: scale-color($button-background, $lightness: -15%);
+$button-background-hover: $primary-color-semidark; //scale-color($button-background, $lightness: -15%);
 $button-color: $white;
 $button-color-alt: $black;
 $button-radius: $global-radius;
@@ -838,7 +856,7 @@ $tab-content-padding: 1rem;
 $thumbnail-border: 4px solid $white;
 $thumbnail-margin-bottom: $global-margin;
 $thumbnail-shadow: 0 0 0 1px rgba($black, 0.2);
-$thumbnail-shadow-hover: 0 0 6px 1px rgba($primary-color, 0.5);
+$thumbnail-shadow-hover: 0 0 6px 1px $primary-color-shadow;// rgba($primary-color, 0.5);
 $thumbnail-transition: box-shadow 200ms ease-out;
 $thumbnail-radius: $global-radius;
 

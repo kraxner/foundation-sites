@@ -63,6 +63,12 @@ $contrast-warnings: true !default;
 ///
 /// @returns {Color} the color from `$colors` (list of colors) that has the most contrast.
 @function color-pick-contrast($base, $colors: ($white, $black), $tolerance: $global-color-pick-contrast-tolerance) {
+
+  // Workaround to allow CSS variables: if argument $base is a string assume that it is a CSS variable, and lookup its corresponding contrast value
+  @if (type-of($value: $base) == string) {
+    @return map-get($global-color-contrasts, $base);
+  }
+
   $contrast: color-contrast($base, nth($colors, 1));
   $best: nth($colors, 1);
 
